@@ -1,0 +1,140 @@
+'use client'
+
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+
+const kpis = [
+  { value: '20명', label: '한정 소규모' },
+  { value: '75.6만', label: '조튜브 구독자' },
+  { value: '4.9★', label: '평균 만족도' },
+]
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 32 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+  }),
+}
+
+export default function Hero() {
+  return (
+    <section className="relative min-h-screen overflow-hidden">
+
+      {/* Background image */}
+      <Image
+        src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1800&q=85"
+        alt="발리 울루와뚜 풍경"
+        fill
+        priority
+        className="object-cover object-center"
+      />
+
+      {/* Gradient overlay — darker toward bottom */}
+      <div className="absolute inset-0 bg-gradient-to-t from-dark/95 via-dark/55 to-dark/10" />
+
+      {/* ── Bottom-left main content ── */}
+      <div className="absolute inset-0 flex flex-col justify-end">
+        <div className="max-w-content mx-auto px-12 max-md:px-5 w-full pb-20 max-md:pb-16">
+          <div className="max-w-2xl">
+
+            {/* Eyebrow badge */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0}
+              className="inline-flex items-center gap-2 border border-kakao/60 bg-kakao/10 text-cream rounded-full px-4 py-1.5 text-sm font-body mb-6"
+            >
+              🎥 <span>Creator Tour · BaliOn × 조튜브</span>
+            </motion.div>
+
+            {/* h1 */}
+            <motion.h1
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0.15}
+              className="font-heading text-cream leading-[1.1] mb-5"
+              style={{ fontSize: 'clamp(2.8rem, 6vw, 5.5rem)' }}
+            >
+              유튜버와 함께<br />
+              <em className="not-italic text-terra italic">떠나는 발리</em>
+            </motion.h1>
+
+            {/* Sub */}
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0.28}
+              className="font-body text-cream/70 text-base max-md:text-sm leading-relaxed max-w-xl mb-9"
+            >
+              클룩엔 없어요. 발리에서 좋아하는 유튜버와 24시간 같이 먹고 놀고
+              촬영하는 딱 하나뿐인 여행.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0.4}
+              className="flex flex-wrap gap-3"
+            >
+              <a
+                href="#packages"
+                className="inline-flex items-center gap-2 bg-cream text-deep font-body font-semibold text-sm px-6 py-3 rounded-full hover:bg-sand active:scale-95 transition-all duration-200"
+              >
+                🌴 패키지 보기
+              </a>
+              <a
+                href="https://pf.kakao.com/_balion"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-kakao text-kakaoD font-body font-semibold text-sm px-6 py-3 rounded-full shadow-[0_4px_20px_rgba(250,225,0,0.4)] hover:bg-yellow-300 active:scale-95 transition-all duration-200"
+              >
+                💛 카카오로 신청
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Bottom-right KPIs (desktop only) ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.6 }}
+        className="absolute right-12 bottom-20 hidden lg:flex flex-col gap-5"
+      >
+        {kpis.map((kpi, i) => (
+          <div key={i} className="text-right">
+            <div className="font-heading text-gold italic text-3xl font-bold leading-none">
+              {kpi.value}
+            </div>
+            <div className="font-body text-cream/45 text-xs mt-1 tracking-wide">
+              {kpi.label}
+            </div>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* ── Bottom-center scroll hint ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="font-body text-cream/35 text-xs tracking-widest uppercase">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+          className="w-5 h-5 border-b-2 border-r-2 border-cream/30 rotate-45"
+        />
+      </motion.div>
+    </section>
+  )
+}
