@@ -25,3 +25,9 @@ Thumbs.db
 
 # Claude Code local files
 .claude/
+
+# 대용량 영상 파일 — Vercel CLI로 직접 배포 (GitHub 100MB 제한 초과)
+public/videos/*.mp4
+public/videos/*.MP4
+public/videos/*.mov
+public/videos/*.MOV

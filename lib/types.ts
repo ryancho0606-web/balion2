@@ -67,3 +67,26 @@ export interface Stat {
   value: string
   label: string
 }
+
+export interface DayTour {
+  id: string
+  title: string
+  copy: string
+  story: string
+  image: string
+  category: '액티비티' | '자연' | '문화' | '가족'
+  price: number
+  duration: string
+  videoSrc?: string
+}
+
+export interface PackageCombo {
+  id: string
+  name: string
+  price: number
+  priceUnit: string
+  items: string[]
+  image: string
+  badge?: string
+  highlight?: boolean
+}

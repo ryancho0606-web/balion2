@@ -5,11 +5,11 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
-  { href: '#packages', label: '패키지' },
-  { href: '#itinerary', label: '일정' },
-  { href: '#difference', label: '왜 BaliOn' },
-  { href: '#join', label: '참여 방법' },
-  { href: '#reviews', label: '후기' },
+  { href: '#creator-tour', label: '크리에이터투어' },
+  { href: '#day-tours',    label: '당일투어' },
+  { href: '#packages',     label: '패키지' },
+  { href: '#reviews',      label: '후기' },
+  { href: '#faq',          label: 'FAQ' },
 ]
 
 export default function Nav() {
@@ -33,7 +33,7 @@ export default function Nav() {
     >
       <div className="max-w-content mx-auto px-12 max-md:px-5 flex items-center justify-between">
 
-        {/* Logo */}
+        {/* 로고 */}
         <a href="#" className="font-heading font-bold text-xl tracking-tight">
           <span className={cn('transition-colors duration-300', scrolled ? 'text-terra' : 'text-cream')}>
             Bali
@@ -43,8 +43,8 @@ export default function Nav() {
           </span>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* 데스크탑 링크 */}
+        <nav className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -65,25 +65,34 @@ export default function Nav() {
             href="https://pf.kakao.com/_balion"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 bg-kakao text-kakaoD font-body font-semibold text-sm px-5 py-2.5 rounded-full shadow-[0_4px_16px_rgba(250,225,0,0.4)] hover:bg-yellow-300 hover:shadow-[0_4px_24px_rgba(250,225,0,0.55)] active:scale-95 transition-all duration-200"
+            className="inline-flex items-center gap-1.5 bg-kakao text-kakaoD font-body font-semibold text-sm px-5 py-2.5 rounded-full shadow-kakao hover:bg-yellow-300 active:scale-95 transition-all duration-200"
           >
             💛 카카오 신청
           </a>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* 모바일 햄버거 */}
         <button
           className="md:hidden p-1 flex flex-col gap-1.5"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="메뉴"
         >
-          <div className={cn('w-5 h-0.5 transition-all duration-300', scrolled ? 'bg-deep' : 'bg-cream', menuOpen && 'rotate-45 translate-y-2')} />
-          <div className={cn('w-5 h-0.5 transition-all duration-300', scrolled ? 'bg-deep' : 'bg-cream', menuOpen && 'opacity-0')} />
-          <div className={cn('w-5 h-0.5 transition-all duration-300', scrolled ? 'bg-deep' : 'bg-cream', menuOpen && '-rotate-45 -translate-y-2')} />
+          {[0, 1, 2].map((n) => (
+            <div
+              key={n}
+              className={cn(
+                'w-5 h-0.5 transition-all duration-300',
+                scrolled ? 'bg-deep' : 'bg-cream',
+                n === 0 && menuOpen && 'rotate-45 translate-y-2',
+                n === 1 && menuOpen && 'opacity-0',
+                n === 2 && menuOpen && '-rotate-45 -translate-y-2',
+              )}
+            />
+          ))}
         </button>
       </div>
 
-      {/* Mobile drawer */}
+      {/* 모바일 드로어 */}
       <motion.div
         initial={false}
         animate={{ height: menuOpen ? 'auto' : 0, opacity: menuOpen ? 1 : 0 }}
@@ -105,7 +114,7 @@ export default function Nav() {
             href="https://pf.kakao.com/_balion"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 inline-flex items-center justify-center gap-1.5 bg-kakao text-kakaoD font-body font-semibold text-sm px-5 py-3 rounded-full active:scale-95"
+            className="mt-2 inline-flex items-center justify-center gap-1.5 bg-kakao text-kakaoD font-body font-semibold text-sm px-5 py-3 rounded-full"
           >
             💛 카카오 신청
           </a>
